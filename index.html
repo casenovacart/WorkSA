@@ -22,6 +22,60 @@
     footer{background:#0b2035;color:#c5d3df;padding:42px 0 22px}.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:35px}.footer-brand{color:#fff;font-size:1.3rem;font-weight:900}.footer-grid p{max-width:380px;color:#aebfce;font-size:.88rem}.footer-grid h4{color:#fff;margin:0 0 12px}.footer-grid a{display:block;color:#c5d3df;text-decoration:none;font-size:.88rem;margin:7px 0}.footer-grid a:hover{color:#73e0c9}.copyright{border-top:1px solid rgba(255,255,255,.13);margin-top:30px;padding-top:17px;color:#91a6b8;font-size:.8rem;display:flex;justify-content:space-between;gap:16px}
     @media(max-width:820px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero{padding:58px 0 65px}.source-grid{grid-template-columns:repeat(2,1fr)}.steps{gap:14px}.footer-grid{grid-template-columns:1fr 1fr}.footer-grid>div:first-child{grid-column:1/-1}}
     @media(max-width:580px){.container{width:min(100% - 28px,1160px)}.topbar .container{font-size:.74rem}.nav{height:66px}nav{gap:13px}nav a{font-size:.82rem}nav a:not(.nav-cta){display:none}.nav-cta{padding:9px 12px}h1{letter-spacing:-1.7px}.hero{padding:48px 0 55px}.search-panel{padding:19px}.section-head{display:block}.section-head .text-link{display:inline-block;margin-top:12px}.source-grid,.steps{grid-template-columns:1fr}.source-card{min-height:180px}section{padding:55px 0}.safety{grid-template-columns:1fr}.cta-band{display:block;padding:27px}.cta-band a{display:inline-block;margin-top:18px}.footer-grid{grid-template-columns:1fr}.footer-grid>div:first-child{grid-column:auto}.copyright{display:block}.copyright span{display:block;margin-top:5px}}
+    /* Mobile-first refinements: comfortable tap targets, readable forms and no horizontal overflow. */
+    html{scroll-padding-top:82px;-webkit-text-size-adjust:100%}
+    body{overflow-x:hidden}
+    button,a,select{touch-action:manipulation}
+    a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #69cdbd;outline-offset:3px}
+    .field{min-height:50px}
+    .search-btn{min-height:52px}
+    @media(max-width:580px){
+      .container{width:calc(100% - 32px)}
+      .topbar .container{padding:7px 0;font-size:.72rem;line-height:1.35}
+      .topbar .container span:last-child{display:none}
+      header{position:sticky;top:0}
+      .nav{height:62px}
+      .brand{font-size:1.25rem;gap:8px}
+      .brand-mark{width:36px;height:36px}
+      nav a.nav-cta{min-height:42px;display:inline-flex;align-items:center}
+      .hero{padding:40px 0 44px}
+      .hero-grid{gap:26px}
+      h1{font-size:clamp(2.45rem,12vw,3.35rem);line-height:1.03;margin:14px 0}
+      .hero p{font-size:1rem;line-height:1.55;margin-bottom:18px}
+      .hero-note{gap:9px 15px;font-size:.8rem}
+      .search-panel{padding:20px 17px;border-radius:16px}
+      .search-panel h2{font-size:1.15rem}
+      .field{font-size:16px;padding:0 12px}
+      .search-btn{font-size:1rem}
+      section{padding:46px 0}
+      .section-head{margin-bottom:20px}
+      .section-head h2{font-size:1.8rem}
+      .source-grid{grid-template-columns:1fr;gap:12px}
+      .source-card{min-height:0;padding:19px}
+      .source-card a{display:inline-flex;align-items:center;min-height:44px}
+      .steps{grid-template-columns:1fr;gap:12px}
+      .step{padding:19px}
+      .safety{padding:19px;gap:12px}
+      .safety ul{padding-left:20px}
+      .safety li{padding:3px 0}
+      .cta-band{padding:24px 20px;border-radius:17px}
+      .cta-band h2{font-size:1.45rem}
+      .cta-band a{min-height:46px;display:inline-flex;align-items:center}
+      footer{padding:34px 0 20px}
+      .footer-grid{gap:22px}
+      .footer-grid a{min-height:38px;display:flex;align-items:center}
+      .copyright{line-height:1.6}
+    }
+    @media(max-width:360px){
+      .container{width:calc(100% - 24px)}
+      .nav{gap:8px}
+      .nav-cta{font-size:.78rem;padding:8px 10px}
+      .eyebrow{font-size:.69rem;letter-spacing:1px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
   </style>
 </head>
 <body>
@@ -43,17 +97,21 @@
         </div>
         <form class="search-panel" id="jobSearch">
           <h2>Search South African jobs</h2>
-          <p>Choose what you are looking for. We’ll open matching searches on established job platforms.</p>
+          <p>Choose a job, location and platform. We’ll open one focused search for you.</p>
           <label class="field-label" for="keywords">Job title or keywords</label>
           <input class="field" id="keywords" name="keywords" placeholder="e.g. Software Developer, Driver, Intern" required>
           <label class="field-label" for="location">City, province or area</label>
           <input class="field" id="location" name="location" value="South Africa" placeholder="e.g. Johannesburg, Gauteng">
+          <label class="field-label" for="platform">Search platform</label>
+          <select class="field" id="platform" name="platform">
+            <option value="indeed">Indeed South Africa</option><option value="linkedin">LinkedIn Jobs</option><option value="pnet">PNet</option>
+          </select>
           <label class="field-label" for="workType">Work preference</label>
           <select class="field" id="workType" name="workType">
             <option value="">Any work arrangement</option><option value="remote">Remote</option><option value="hybrid">Hybrid</option><option value="onsite">On-site</option>
           </select>
           <button class="search-btn" type="submit">Search jobs <span aria-hidden="true">→</span></button>
-          <p class="search-help">Search results open on the selected job platforms. WorkSA does not host or verify individual vacancies.</p>
+          <p class="search-help">Your search opens on the platform you selected. WorkSA does not host or verify individual vacancies.</p>
         </form>
       </div>
     </section>
@@ -117,12 +175,14 @@
       const workType = document.getElementById('workType').value;
       if (!keywords) { document.getElementById('keywords').focus(); return; }
       const query = [keywords, workType].filter(Boolean).join(' ');
-      const urls = [
-        'https://za.indeed.com/jobs?' + new URLSearchParams({q: query, l: location}),
-        'https://www.linkedin.com/jobs/search/?' + new URLSearchParams({keywords: query, location: location}),
-        'https://www.pnet.co.za/jobs.html?' + new URLSearchParams({q: query, location: location})
-      ];
-      urls.forEach((url) => window.open(url, '_blank', 'noopener,noreferrer'));
+      const platform = document.getElementById('platform').value;
+      const destinations = {
+        indeed: 'https://za.indeed.com/jobs?' + new URLSearchParams({q: query, l: location}),
+        linkedin: 'https://www.linkedin.com/jobs/search/?' + new URLSearchParams({keywords: query, location: location}),
+        pnet: 'https://www.pnet.co.za/jobs.html?' + new URLSearchParams({q: query, location: location})
+      };
+      const destination = destinations[platform];
+      if (destination) window.open(destination, '_blank', 'noopener,noreferrer');
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
