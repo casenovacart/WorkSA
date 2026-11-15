@@ -12,7 +12,7 @@ WorkSA is a South African job portal with a Supabase-backed vacancy catalogue, c
 - Candidate registration and sign-in use Supabase Auth.
 - Candidates can apply to verified jobs inside WorkSA; applications are associated with their authenticated account.
 - Candidates can view their own applications. The employer who owns a vacancy can view applications to that vacancy and update application status.
-- Employer users can submit a verification request. Once approved by a WorkSA administrator, they can submit draft vacancies for review.
+- Employer users can submit a verification request from My account. Once approved by a WorkSA administrator, they can submit draft vacancies for review. Editing a verified job automatically unpublishes it and removes verification until an administrator reviews it again.
 - Responsive mobile navigation, keyboard focus indicators, semantic labels, reduced-motion support and job-scam safety guidance.
 
 ## Live job catalogue
@@ -35,8 +35,9 @@ Applied database migrations:
 - `20261115111528_worksa_job_portal_core`
 - `20261115111538_worksa_tighten_application_permissions`
 - `20261115111643_worksa_combine_read_policies`
+- `202611151117xx_worksa_restrict_employer_updates` (exact migration version is recorded in the connected Supabase project)
 
-All four public tables have Row Level Security enabled. Public users can read only published, verified and unexpired jobs. Candidates can read their own profiles and applications. Employers can read their own jobs and applications submitted to their jobs. Employer verification status cannot be self-approved. Job publication and verification flags are not writable through the employer frontend. Application status is not writable by the candidate.
+All four public tables have Row Level Security enabled. Public users can read only published, verified and unexpired jobs. Candidates can read their own profiles and applications. Employers can read their own jobs and applications submitted to their jobs. Employer verification status cannot be self-approved. Job publication and verification flags are not writable through the employer frontend. Employer-submitted changes to a published job automatically return it to unpublished / unverified status for another review. Application status is not writable by the candidate.
 
 ## Employer publishing workflow
 
