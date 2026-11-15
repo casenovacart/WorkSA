@@ -35,7 +35,7 @@ Applied database migrations:
 - `20261115111528_worksa_job_portal_core`
 - `20261115111538_worksa_tighten_application_permissions`
 - `20261115111643_worksa_combine_read_policies`
-- `202611151117xx_worksa_restrict_employer_updates` (exact migration version is recorded in the connected Supabase project)
+- `20261115111739_worksa_restrict_employer_updates`
 
 All four public tables have Row Level Security enabled. Public users can read only published, verified and unexpired jobs. Candidates can read their own profiles and applications. Employers can read their own jobs and applications submitted to their jobs. Employer verification status cannot be self-approved. Job publication and verification flags are not writable through the employer frontend. Employer-submitted changes to a published job automatically return it to unpublished / unverified status for another review. Application status is not writable by the candidate.
 
