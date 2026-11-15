@@ -39,6 +39,22 @@ Applied database migrations:
 
 All four public tables have Row Level Security enabled. Public users can read only published, verified and unexpired jobs. Candidates can read their own profiles and applications. Employers can read their own jobs and applications submitted to their jobs. Employer verification status cannot be self-approved. Job publication and verification flags are not writable through the employer frontend. Employer-submitted changes to a published job automatically return it to unpublished / unverified status for another review. Application status is not writable by the candidate.
 
+
+## External job listings
+
+WorkSA can display an external opportunity alongside verified employer-submitted vacancies. External listings are read from `public.external_jobs` and are intentionally separate from `public.jobs`:
+
+- WorkSA displays a short, independently written summary, requirements, source attribution and dates.
+- The original source listing and the direct application page are separate links. **Apply on source** opens the employer/source application URL in a new tab.
+- Candidates are not asked to sign into WorkSA or submit an in-platform application for an external vacancy.
+- Search covers title, company, category, description and requirements. Filters include location, category, employment type, experience level and work arrangement.
+- Only published, unexpired external records are public. The external table has RLS enabled and public read-only access; there is no public insert/update/delete policy.
+- External listing records must be entered by a trusted WorkSA administrator using the Supabase dashboard or a controlled server-side workflow. Do not expose a service-role key in the browser.
+- Set `content_basis` to the actual rights basis (`editor_summary`, `licensed_feed`, or `employer_permission`). A public link summary is not permission to copy a job advert. Do not scrape LinkedIn, Indeed or other job boards against their terms.
+- Review the original listing and application URL before publishing, set `checked_at`, and remove/unpublish expired or withdrawn roles.
+
+The external catalogue is initially empty. Adding this feature does not automatically import jobs from LinkedIn, Indeed or any other provider; approved feeds or individually reviewed links and summaries are still needed.
+
 ## Employer publishing workflow
 
 1. A user creates a WorkSA account and submits their business name and optional registration / website details in the Employer access area.
